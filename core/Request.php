@@ -78,30 +78,48 @@ class Request
     return $_SERVER['REQUEST_URI'];
   }
 
+  /*
+    ベースURLとPATH_INFOの説明
+    ベースURL -> URLのホスト部分からフロントコントローラまでの値、このフレームワークでの名前、HTML内リンクで使う
+    PATH_INFO -> ベースURLより後の値（GETパラメータは含まない）、RouterクラスがURLとコントローラの紐付けで使う
+  */
+
+  // ベースURLを取得するメソッド
   public function getBaseUrl()
   {
     $script_name = $_SERVER['SCRIPT_NAME'];
 
     $request_uri = $this->getRequestUri();
 
+    // strposは第一引数に指定した文字列から、第二引数に指定した文字列が最初に出現する位置を調べる関数
     if (0 === strpos($request_uri, $script_name)) {
+      // フロントコントローラがURLに含まれる場合の処理、
+      // SCRIPT_NAMEの値がベースURLと同じになるのでそれを返す
       return $script_name;
     } elseif (0 === strpos($request_uri, dirname($script_name))) {
+      // フロントコントローラが省略されている場合の処理
+      // rtrim()関数で、右に続く'/'を削除した値を返す
       return rtrim(dirname($script_name), '/');
     }
 
     return '';
   }
 
+  // PATH_INFOを取得するメソッド
   public function getPathInfo()
   {
+    // ベースURLとREQUEST_URIを使用する
     $base_url = $this->getBaseUrl();
-    $request_uri = $this->getRequestUli();
+    $request_uri = $this->getRequestUri();
 
+    // GETパラメータを取り除く処理
     if (false !== ($pos = strpos($request_uri, '?'))) {
+      // strpos()関数は第一引数で指定した文字列のうち、第二引数で指定した位置から第三引数で指定した文字数分取得する関数
+      // ここでは'?'より前の部分を抜き出して$request_uriに代入している
       $request_uri = substr($request_uri, 0, $pos);
     }
 
+    // GETパラメータを除いたREQUEST_URIから、ベースURLを除いた値を$path_infoに代入している
     $path_info = (string)substr($request_uri, strlen($base_url));
 
     return $path_info;
