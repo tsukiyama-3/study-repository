@@ -1,0 +1,10 @@
+# .htaccessとは
+# ・Apachの設定を変更するためのファイル
+#  指定されたファイルが存在する場合はそのファイルを読み込み、
+#  存在しなければindex.phpにアクセスする処理
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
