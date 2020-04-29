@@ -1,18 +1,36 @@
 <?php
 
+// Requestクラス
+
+/*
+  Requestクラスの内容
+  ・ユーザーのリクエスト情報を制御するクラス
+  機能
+  ・HTTPメソッドの判定
+  ・$_GET、$_POSTなどの値の取得
+  ・リクエストされたURLの取得
+  ・サーバーのホスト名やSSLでのアクセスかどうかの判定
+*/
+
 class Request
 {
+
+  // HTTPメソッドがPOSTかどうかを判定するメソッド
   public function isPost()
   {
+    // 'REQUEST_METHOD'にリクエストメソッドが格納されている
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // POSTであればtrueを返す
       return true;
     }
-
+    // それ以外はfalseを返す
     return false;
   }
 
+  // $_GET変数から値を取得するメソッド、第二引数はキーが存在しない場合のデフォルト値
   public function getGet($name, $default = null)
   {
+    // 
     if (isset($_GET[$name])) {
       return $_GET[$name];
     }
@@ -20,6 +38,7 @@ class Request
     return $default;
   }
 
+  // $_POST変数から値を取得するメソッド、第二引数はキーが存在しない場合のデフォルト値
   public function getPost($name, $default = null)
   {
     if (isset($_POST[$name])) {
@@ -29,17 +48,23 @@ class Request
     return $default;
   }
 
+  // サーバーのホスト名を取得するメソッド
   public function getHost()
   {
-    if (!empty($_server['HTTP_HOST'])) {
+    // $_SERVER['HTTP_HOST']にはリクエストヘッダのホストの値が格納されている
+    if (!empty($_SERVER['HTTP_HOST'])) {
+      // $_SERVER['HTTP_HOST']が空じゃなかったらそれを返す
       return $_SERVER['HTTP_HOST'];
     }
 
+    // リクエストヘッダにホストの値が含まれない場合Apach川に設定されたホスト名を返す
     return $_SERVER['SERVER_NAME'];
   }
 
+  // HTTPSでアクセスされたかどうかの判定を行うメソッド
   public function isSsl()
   {
+    // HTTPSでアクセスされた場合、$_SERVER['HTTPS']に"on"という文字が含まれるので、それを使って判定する
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
       return true;
     }
@@ -47,6 +72,7 @@ class Request
     return false;
   }
 
+  // URLの情報が格納されている、$_SERVER['REQUEST_URI']を返すメソッド
   public function getRequestUri()
   {
     return $_SERVER['REQUEST_URI'];
