@@ -8,7 +8,8 @@ class HelloController extends AppController
   
   public function index()
   {
-    echo "hello world!";
+    $this->setAction("other"); // フォワード
+    // $this->redirect("/hello/other"); // リダイレクト
   }
 
   public function other()
