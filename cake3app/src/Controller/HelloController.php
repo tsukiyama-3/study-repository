@@ -10,4 +10,9 @@ class HelloController extends AppController
   {
     echo "hello world!";
   }
+
+  public function other()
+  {
+    echo "これは、index以外の表示です。";
+  }
 }
