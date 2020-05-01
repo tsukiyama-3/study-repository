@@ -1,0 +1,30 @@
+body {
+  background: #eee;
+  color: #999;
+  margin: 10px 0;
+}
+
+#header {
+  font-size: 18pt;
+  font-weight: bold;
+  margin: 10px;
+}
+
+#content {
+  background: #fff;
+  color: #999;
+  padding: 10px 25px 30px 25px;
+  font-size: 14pt;
+}
+
+#footer {
+  text-align: right;
+  font-size: 12pt;
+  margin: 10pt;
+}
+
+h1 {
+  color: #aaa;
+  font-size: 24pt;
+  margin: 20pt 0 50pt 0;
+}
