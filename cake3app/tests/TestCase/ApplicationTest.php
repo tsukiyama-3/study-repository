@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -29,6 +27,7 @@ use InvalidArgumentException;
  */
 class ApplicationTest extends IntegrationTestCase
 {
+
     /**
      * testBootstrap
      *
@@ -42,8 +41,8 @@ class ApplicationTest extends IntegrationTestCase
 
         $this->assertCount(3, $plugins);
         $this->assertSame('Bake', $plugins->get('Bake')->getName());
-        $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
         $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
+        $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
     }
 
     /**
@@ -78,10 +77,8 @@ class ApplicationTest extends IntegrationTestCase
 
         $middleware = $app->middleware($middleware);
 
-        $this->assertInstanceOf(ErrorHandlerMiddleware::class, $middleware->current());
-        $middleware->seek(1);
-        $this->assertInstanceOf(AssetMiddleware::class, $middleware->current());
-        $middleware->seek(2);
-        $this->assertInstanceOf(RoutingMiddleware::class, $middleware->current());
+        $this->assertInstanceOf(ErrorHandlerMiddleware::class, $middleware->get(0));
+        $this->assertInstanceOf(AssetMiddleware::class, $middleware->get(1));
+        $this->assertInstanceOf(RoutingMiddleware::class, $middleware->get(2));
     }
 }
