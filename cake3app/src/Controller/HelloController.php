@@ -8,7 +8,7 @@ class HelloController extends AppController
   
   public function index()
   {
-    $this->viewBuilder()->autoLayout(false);
+    // $this->viewBuilder()->autoLayout(false);
 
     // $this->setAction("other"); // フォワード
     // $this->redirect("/hello/other"); // リダイレクト
