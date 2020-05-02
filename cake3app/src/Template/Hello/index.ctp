@@ -2,7 +2,7 @@
 <p>
     <?= $result; ?>
 </p>
-<?= $this->Form->create(null, ['type' => 'post', 'url' => ['controller' => 'Hello', 'action' => 'index']]) ?>
-    <?= $this->Form->text("HelloForm.text1") ?>
+<?= $this->Form->create(null, ['type' => 'post', 'url' => ['action' => 'index']]) ?>
+    <?= $this->Form->checkbox("HelloForm.check1", ['checked' => true]) ?>checkbox
     <?= $this->Form->submit("送信") ?>
 <?= $this->Form->end(); ?>
