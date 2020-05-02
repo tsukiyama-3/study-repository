@@ -17,6 +17,18 @@ class HelloController extends AppController
   public function index()
   {
 
+    $result = "";
+    if ($this->request->isPost()) {
+        $result = "<pre>※送信された情報<br>";
+        foreach ($this->request->data['HelloForm'] as $key => $val) {
+            $result .= $key . ' => ' . $val;
+        }
+        $result .= "</pre>";    
+    } else {
+        $result = "※何か書いて送信してください。";
+    }
+    $this->set("result", $result);
+
     // $this->set('msg', 'ヘッダーエレメント！！');
     // $n = rand(1,2);
     // $this->set('footer', 'Hello/footer' . $n);
@@ -34,14 +46,14 @@ class HelloController extends AppController
   public function sendForm()
   {
 
-    $str = $this->request->data['text1'];
-    $result = "";
-    if ($str != "") {
-        $result = "you type: " . $str;
-    } else {
-        $result = "empty.";
-    }
-    $this->set("result", h($result));
+    // $str = $this->request->data['text1'];
+    // $result = "";
+    // if ($str != "") {
+    //     $result = "you type: " . $str;
+    // } else {
+    //     $result = "empty.";
+    // }
+    // $this->set("result", h($result));
 
     // $result = "※送信された情報<br>";
     // foreach ($this->request->query as $key => $val) {
