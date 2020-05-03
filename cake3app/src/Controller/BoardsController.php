@@ -9,17 +9,18 @@ class BoardsController extends AppController
         if ($this->request->is('post')) {
             $data = $this->Boards->find('all', [
                 'conditions' => [
-                    'name like' => "%{$this->request->data['name']}%"
+                    'name like ' => "%{$this->request->data['name']}%"
                 ]
             ]);
         } else {
             $data = $this->Boards->find('all');
         }
+        $data->order(['name' => 'ASC', 'id' => 'DESC']);
         $this->set('data', $data);
         $this->set('count', $data->count());
-        $this->set('min', $data->min('id'));
-        $this->set('max', $data->max('id'));
-        $this->set('first', $data->first()->toArray());
+        // $this->set('min', $data->min('id'));
+        // $this->set('max', $data->max('id'));
+        // $this->set('first', $data->first()->toArray());
     }
 
     public function addRecord()
