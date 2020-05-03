@@ -1,21 +1,19 @@
 <h1>Databaseサンプル</h1>
 <table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>TITLE</th>
-            <th>CONTENT</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($data as $obj): ?>
-            <tr>
-                <td><?= $obj->id ?></td>
-                <td><?= h($obj->name) ?></td>
-                <td><?= h($obj->title) ?></td>
-                <td><?= h($obj->content) ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>TITLE</th>
+        <th>CONTENT</th>
+    </tr>
+    <?php
+        $arr = $data->toArray();
+        for ($i = 0;$i < count($arr); $i++) {
+            echo $this->Html->tableCells(
+                $arr[$i]->toArray(),
+                ['style' => 'background-color:#f0f0f0'],
+                ['style' => 'font-weight:bold'],
+            true);
+        }
+    ?>
 </table>
