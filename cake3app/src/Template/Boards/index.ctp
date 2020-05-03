@@ -1,7 +1,7 @@
 <h1>Databaseサンプル</h1>
 <?= $this->Form->create($entity, ['url' => ['action' =>'index']]) ?>
 <fieldset>
-    <?= $this->Form->text('id') ?>
+    <?= $this->Form->text('name') ?>
 </fieldset>
 <?= $this->Form->button("送信") ?>
 <?= $this->Form->end() ?>

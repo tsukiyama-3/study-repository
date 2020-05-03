@@ -8,7 +8,9 @@ class BoardsController extends AppController
         $this->set('entity', $this->Boards->newEntity());
         if ($this->request->is('post')) {
             $data = $this->Boards->find('all', [
-                'conditions' => ['id' => $this->request->data['id']]
+                'conditions' => [
+                    'name like' => "%{$this->request->data['name']}%"
+                ]
             ]);
         } else {
             $data = $this->Boards->find('all');
