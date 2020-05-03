@@ -5,9 +5,15 @@ class BoardsController extends AppController
 {
     public function index()
     {
-        $data = $this->Boards->find('all');
-        $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
+        if ($this->request->is('post')) {
+            $data = $this->Boards->find('all', [
+                'conditions' => ['id' => $this->request->data['id']]
+            ]);
+        } else {
+            $data = $this->Boards->find('all');
+        }
+        $this->set('data', $data);
     }
 
     public function addRecord()
