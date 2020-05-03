@@ -254,7 +254,7 @@ return [
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Sqlite',
+            'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
             'host' => 'localhost',
             /*
@@ -263,9 +263,9 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => '',
-            'password' => '',
-            'database' => ROOT . DS . 'db' . DS . 'mydata.sqlite3',
+            'username' => 'root',
+            'password' => 'root',
+            'database' => 'mydata',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
