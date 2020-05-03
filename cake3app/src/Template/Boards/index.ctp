@@ -8,6 +8,11 @@
 
 <hr>
 
+<p>COUNT: <?= $count ?></p>
+<p>first: <?php pr($first); ?></p>
+<p>min: <?= $min ?></p>
+<p>max: <?= $max ?></p>
+
 <table>
     <tr>
         <th>ID</th>

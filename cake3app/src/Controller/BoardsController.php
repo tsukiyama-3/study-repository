@@ -16,6 +16,10 @@ class BoardsController extends AppController
             $data = $this->Boards->find('all');
         }
         $this->set('data', $data);
+        $this->set('count', $data->count());
+        $this->set('min', $data->min('id'));
+        $this->set('max', $data->max('id'));
+        $this->set('first', $data->first()->toArray());
     }
 
     public function addRecord()
