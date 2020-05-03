@@ -17,7 +17,11 @@ class BoardsController extends AppController
             $board = $this->Boards->newEntity($this->request->data);
             $this->Boards->save($board);
         }
-        return $this->redirect(['action' => 'index']);
+        // return $this->redirect(['action' => 'index']);
+        $this->autoRender = false;
+        echo "<pre>";
+        pr($this->request->data);
+        echo "</pre>";
     }
 
 }
