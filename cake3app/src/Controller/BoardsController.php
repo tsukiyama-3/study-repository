@@ -35,12 +35,9 @@ class BoardsController extends AppController
     public function delRecord()
     {
         if ($this->request->is('post')) {
-            try {
-                $entity = $this->Boards->get($this->request->data['id']);
-                $this->Boards->delete($entity);
-            } catch (Exception $e) {
-                Log::write('debug', $e->getMessage());
-            }
+            $this->Boards->deleteAll(
+                ['name'=>$this->request->data['name']]
+            );
         }
         $this->redirect(['action' => 'index']);
     }
