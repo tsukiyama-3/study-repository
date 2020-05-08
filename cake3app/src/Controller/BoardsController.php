@@ -1,6 +1,9 @@
 <?php
 namespace App\Controller;
 
+use \Exception;
+use \Cake\Log\Log;
+
 class BoardsController extends AppController
 {
     public function index()
@@ -27,6 +30,19 @@ class BoardsController extends AppController
         echo "<pre>";
         pr($this->request->data);
         echo "</pre>";
+    }
+
+    public function delRecord()
+    {
+        if ($this->request->is('post')) {
+            try {
+                $entity = $this->Boards->get($this->request->data['id']);
+                $this->Boards->delete($entity);
+            } catch (Exception $e) {
+                Log::write('debug', $e->getMessage());
+            }
+        }
+        $this->redirect(['action' => 'index']);
     }
 
 }
