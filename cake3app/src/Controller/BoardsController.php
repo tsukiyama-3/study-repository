@@ -47,14 +47,10 @@ class BoardsController extends AppController
 
     public function editRecord()
     {
-        if ($this->request->is('put')) {
-            try {
-                $entity = $this->Boards->get($this->request->data['id']);
-                $entity->content = $this->request->data['content'];
-                $this->Boards->save($entity);
-            } catch(Exception $e) {
-                Log::write('debug', $e->getMessage());
-            }
+        if ($this->request->is('post')) {
+            $arr1 = ['name' => $this->request->data['name']];
+            $arr2 = ['title' => $this->request->data['title']];
+            $this->Boards->updateAll($arr2, $arr1);
         }
         return $this->redirect(['action' => 'index']);
     }

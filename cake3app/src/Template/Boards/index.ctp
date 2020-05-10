@@ -1,9 +1,8 @@
 <h1>Databaseサンプル</h1>
 <?= $this->Form->create($entity, ['url' => ['action' =>'editRecord']]) ?>
 <fieldset>
-   <p><?= 'ID = ' . $entity->id ?></p>
-   <?= $this->Form->hidden("id") ?>
-   <?= $this->Form->textarea("content") ?>
+   <?= $this->Form->text('name') ?>
+   <?= $this->Form->text('title') ?>
 </fieldset>
 <?= $this->Form->button("送信") ?>
 <?= $this->Form->end() ?>
