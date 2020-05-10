@@ -8,16 +8,7 @@ class BoardsController extends AppController
 {
     public function index($id = null)
     {
-        $this->set('entity', $this->Boards->newEntity());
-        if ($id != null) {
-            try {
-                $entity = $this->Boards->get($id);
-                $this->set('entity', $entity);
-            } catch(Exception $e) {
-                Log::write('debug', $e->getMessage());
-            }
-        }
-        $data = $this->Boards->find('all')->order(['id' => 'DESC']);
+        $data = $this->Boards->find('all');
         $this->set('data', $data->toArray());
         $this->set('count', $data->count());
     }
