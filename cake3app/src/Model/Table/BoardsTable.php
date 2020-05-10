@@ -9,6 +9,6 @@ class BoardsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('books');
+        $this->primaryKey('name');
     }
 }
