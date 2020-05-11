@@ -8,7 +8,7 @@ class BoardsController extends AppController
 {
     public function index($id = null)
     {
-        $data = $this->Boards->find('list')->toArray();
+        $data = $this->Boards->find('all')->toArray();
         $this->set('data', $data);
     }
 
