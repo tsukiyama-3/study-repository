@@ -9,7 +9,7 @@
 <table>
     <?php foreach ($data as $obj): ?>
     <tr>
-        <td><?= $obj ?></td>
+        <td><?= print_r($obj) ?></td>
     </tr>
     <?php endforeach; ?>
 </table>
