@@ -11,7 +11,9 @@ class BoardsController extends AppController
         $data = $this->Boards->find();
         if ($this->request->is('post')) {
             $input = $this->request->data['input'];
-            $data = $this->Boards->find()->where(['id <=' => $input])->order(['id' => "DESC"]);
+            $data = $this->Boards->find()->where(['name like' => '%' . $input . '%'])
+            ->orWhere(['title like' => '%' . $input . '%'])
+            ->orWhere(['content like' => '%' . $input . '%']);
         }
         $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
