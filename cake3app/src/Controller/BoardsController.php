@@ -11,7 +11,7 @@ class BoardsController extends AppController
         $data = $this->Boards->find();
         if ($this->request->is('post')) {
             $input = $this->request->data['input'];
-            $data = $this->Boards->find()->where(['name' => $input]);
+            $data = $this->Boards->find()->where(['id <=' => $input]);
         }
         $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
