@@ -9,7 +9,8 @@ class BoardsController extends AppController
     public function index($id = null)
     {
         $data = $this->Boards->find('all');
-        $this->set('data', $data->toArray());
+        $this->set('data', $data);
+        $this->set('entity', $this->Boards->newEntity());
     }
 
     public function addRecord()
@@ -19,10 +20,7 @@ class BoardsController extends AppController
             $board = $this->Boards->newEntity($this->request->data);
             $this->Boards->save($board);
         }
-        $this->autoRender = false;
-        echo "<pre>";
-        pr($this->request->data);
-        echo "</pre>";
+        return $this->redirect(['action' => 'index']);
     }
 
     public function delRecord()
