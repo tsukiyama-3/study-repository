@@ -5,10 +5,8 @@ use Cake\ORM\Table;
 
 class BoardsTable extends Table
 {
-    public function initialize($config)
+    public static function defaultConnectionName()
     {
-        parent::initialize($config);
-
-        $this->entityClass('Book');
+        return 'default2';
     }
 }
