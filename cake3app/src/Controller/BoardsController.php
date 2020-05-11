@@ -8,8 +8,9 @@ class BoardsController extends AppController
 {
     public function index($id = null)
     {
-        $data = $this->Boards->find('all')->toArray();
-        $this->set('data', $data);
+        $data = $this->Boards->find('all');
+        $this->set('data', $data->toArray());
+        $this->set('qdata', $this->Boards->qdata);
     }
 
     public function addRecord()
