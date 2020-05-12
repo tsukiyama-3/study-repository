@@ -9,18 +9,7 @@ class BoardsController extends AppController
 {
     public function index($id = null)
     {
-        if (!$this->request->is('post')) {
-            $connection = ConnectionManager::get('default');
-            $data = $connection
-                ->execute('SELECT * FROM boards')
-                ->fetchAll('assoc');
-        } else {
-            $input = $this->request->data['input'];
-            $connection = ConnectionManager::get('default');
-            $data = $connection
-                ->execute('SELECT * FROM boards where id = :id', ['id' => $input])
-                ->fetchAll('assoc');
-        }
+        $data = $this->Boards->find('all');
         $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
     }
@@ -30,9 +19,11 @@ class BoardsController extends AppController
         if ($this->request->is('post'))
         {
             $board = $this->Boards->newEntity($this->request->data);
-            $this->Boards->save($board);
+            if ($this->Boards->save($board)) {
+                $this->redirect(['action' => 'index']);
+            }
+            $this->set('entity', $board);
         }
-        return $this->redirect(['action' => 'index']);
     }
 
     public function delRecord()
