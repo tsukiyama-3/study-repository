@@ -24,6 +24,7 @@ class BoardsController extends AppController
             }
             $this->set('entity', $board);
         }
+        $this->redirect(['action' => 'index']);
     }
 
     public function delRecord()
