@@ -23,4 +23,10 @@ class BoardsTable extends Table
 
         return $validator;
     }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['name'], '既に登録済みです。'));
+        return $rules;
+    }
 }
