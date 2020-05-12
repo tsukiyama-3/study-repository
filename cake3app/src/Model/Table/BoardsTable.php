@@ -13,20 +13,28 @@ class BoardsTable extends Table
         $validator
             ->integer('id');
         $validator
-            ->notEmpty('name')
-            ->minLength('name', 3, '3文字以上入力してください。')
-            ->maxLength('name', 20, '20文字以下で入力してください。');
+            ->notEmpty('name', '必須項目です。');
         $validator
-            ->notEmpty('title');
+            ->notEmpty('title', '必須項目です。');
         $validator
-            ->notEmpty('content');
+            ->notEmpty('content', '必須項目です。');
+        
+        $validator
+            ->add('name', 'maxRecords',
+            [
+                'rule' => ['maxRecords', 'name', 5],
+                'message' => __('最大数を超えています。'),
+                'provider' => 'table',
+            ]);
 
         return $validator;
     }
 
-    public function buildRules(RulesChecker $rules)
+    public function maxRecords($data, $field, $num)
     {
-        $rules->add($rules->isUnique(['name'], '既に登録済みです。'));
-        return $rules;
+        $n = $this->find()
+            ->where([$field => $data])
+            ->count();
+        return $n < $num ? true : false;
     }
 }
