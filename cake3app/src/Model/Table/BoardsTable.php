@@ -8,6 +8,12 @@ use Cake\Validation\Validator;
 
 class BoardsTable extends Table
 {
+
+    public function initialize(array $config)
+    {
+        $this->belongsTo('People');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
