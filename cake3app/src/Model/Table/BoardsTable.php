@@ -19,28 +19,15 @@ class BoardsTable extends Table
         $validator
             ->integer('id');
         $validator
+            ->integer('person_id')
+            ->requirePresence('preson_id');
+        $validator
             ->notEmpty('name', '必須項目です。');
         $validator
             ->notEmpty('title', '必須項目です。');
         $validator
             ->notEmpty('content', '必須項目です。');
-        
-        $validator
-            ->add('name', 'maxRecords',
-            [
-                'rule' => ['maxRecords', 'name', 5],
-                'message' => __('最大数を超えています。'),
-                'provider' => 'table',
-            ]);
 
         return $validator;
-    }
-
-    public function maxRecords($data, $field, $num)
-    {
-        $n = $this->find()
-            ->where([$field => $data])
-            ->count();
-        return $n < $num ? true : false;
     }
 }
